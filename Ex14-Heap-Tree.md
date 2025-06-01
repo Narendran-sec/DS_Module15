@@ -1,79 +1,45 @@
-# Ex 3(E) Largest Element in BST
-## DATE: 21.03.2025
+# Ex 3(D) Heap Tree
+## DATE: 19.03.2025
 ## AIM:
-To Write a c program to find the largest value in a Binary Search Tree.
+To write a C function to delete an element in a Heap Tree.
 
 ## Algorithm
-1. Initialize a pointer to the root of the BST.
-2. Move to the right child in a loop while it exists.
-3. Stop when the right child is NULL.
-4. Return the current node’s value as the largest.
+1. Start
+2. Find the index of the element num in the array.
+3. Swap the element to be deleted with the last element in the array.
+4. Decrease the array size (size) by 1.
+5. Start heapifying from the last non-leaf node (index size/2 - 1).
+6. Call heapify() to restore the heap property for each node.
+7. End
+
 ## Program:
 ```
 /*
-Program to find and display the priority of the operator in the given Postfix expression
-Developed by: Narendram K
+Program to delete an element in a Heap Tree
+Developed by: Narendran K
 RegisterNumber: 212223230135
 */
-#include <stdio.h>
-#include <stdlib.h>
-struct node
+void deleteRoot(int array[], int num)
 {
-int info;
-struct node *left, *right;
-};
-struct node *createnode(int key)
+int i; for(i=0;i<size;i++)
 {
-struct node *newnode = (struct node*)malloc(sizeof(struct node));
-newnode->info = key;
-newnode->left = NULL;
-newnode->right = NULL;
-return(newnode);
-}
-void inorder(struct node *root)
+if(num==array[i])
 {
-if(root != NULL)
-{
-inorder(root->left);
-printf(" %d ",root->info);
-inorder(root->right);
+break;
 }
 }
-void largest(struct node *root)
+swap(&array[i],&array[size-1]); size-=1;
+for(i=size/2-1;i>=0;i--)
 {
-while (root != NULL && root->right != NULL)
-{
-root = root->right;
+heapify(array,size,i);
 }
-printf("\nLargest value is %d", root->info);
-}
-EX.NO : 3(E)
-LARGEST ELEMENT IN BST
-DATE :
-/*
-* Main Function
-*/
-int main()
-{
-/* Creating first Tree. */
-struct node *newnode = createnode(25);
-newnode->left = createnode(17);
-newnode->right = createnode(35);
-newnode->left->left = createnode(13);
-newnode->left->right = createnode(19);
-newnode->right->left = createnode(27);
-newnode->right->right = createnode(55);
-printf("Inorder traversal of tree 1 :");
-inorder(newnode);
-largest(newnode);
-return 0;
 }
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/9dc4fe14-8545-431e-82a2-1e990bc86985)
+![image](https://github.com/user-attachments/assets/a451d4e2-464b-4c9d-ab2c-03052bdfccf9)
 
 
 
 ## Result:
-Thus, the C program to find the largest value in a Binary Search Tree is implemented successfully.
+Thus, the function to delete an element in a Heap Tree is implemented successfully.
